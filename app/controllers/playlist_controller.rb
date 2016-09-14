@@ -47,7 +47,13 @@ class PlaylistController < ApplicationController
     end
 
     get '/playlist/:id/songadd' do
+      @playlist = Playlist.find_by(id: params[:id])
+      erb :'/playlists/add'
+      # binding.pry
+    end
 
+    post '/playlist/:id/add' do
+      binding.pry
     end
 
 
