@@ -1,4 +1,8 @@
+require 'rack-flash'
+
 class PlaylistController < ApplicationController
+
+  use Rack::Flash
 
     get '/playlists/new' do
       erb :'/playlists/new_playlist'
@@ -21,6 +25,7 @@ class PlaylistController < ApplicationController
               @user = User.find_by_id(session[:id])
               @user.playlists << @playlist
             else
+              #flash message that not a valid song
               redirect to '/playlists/new'
             end
           end
