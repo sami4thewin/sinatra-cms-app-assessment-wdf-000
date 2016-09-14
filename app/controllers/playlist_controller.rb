@@ -42,7 +42,7 @@ class PlaylistController < ApplicationController
         # if song.name == @song.name
       @playlist.songs.delete(Song.find_by(id: params[:song_id]))
       # binding.pry
-      redirect to '/playlist/#{@playlist.id}/edit'
+      redirect to "/playlist/#{@playlist.id}/edit"
       # end
     end
 

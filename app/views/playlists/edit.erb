@@ -1,8 +1,14 @@
 <h2><%=@playlist.name%>'s current songs:</h2>
 
 <%@playlist.songs.each do |song|%>
-<%=song.name%>
+<h3><a href="<%=song.spotify%>" target="_blank"><%=song.name%></a></h3>
 <br>
 <a href='/playlist/<%=@playlist.id%>/<%=song.id%>/songdelete'>Delete</a>
 <br></br>
 <%end%>
+<br></br>
+
+<a href="/users/home">Click here to return home.</a>
+<br></br>
+
+<a href="#"></a>
