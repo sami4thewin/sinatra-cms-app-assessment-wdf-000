@@ -30,5 +30,10 @@ class PlaylistController < ApplicationController
       # binding.pry
     end
 
+    get '/playlist/:id/edit' do
+      @playlist = Playlist.find_by(id: params[:id])
+      erb :'/playlists/edit'
+    end
+
 
 end

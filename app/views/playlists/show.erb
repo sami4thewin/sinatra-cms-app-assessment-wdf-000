@@ -1,13 +1,16 @@
 
 <h1><%=@playlist.name%></h1>
 <br></br>
+
 <%@playlist.songs.each do |song|%>
 <h3><a href="<%=song.spotify%>" target="_blank"><%=song.name%></a></h3>
 <%end%>
+<br></br>
 
-<a href="/playlists/:id/edit">Edit Playlist</a>
+<a href="/playlist/<%=@playlist.id%>/edit">Edit Playlist</a>
 <br></br>
 
 <a href="/users/home">Click here to return to your homepage</a>
 <br></br>
+
 <a href="/users/logout">Click here to logout</a>
