@@ -20,11 +20,11 @@ class UserController < ApplicationController
             #flash message saying this email has an account
           end
         end
-        @user = User.find_or_create_by(params)
+        @user = User.create(params)
         session[:id] = @user.id
         redirect '/users/home'
       else
-        #put a flash message
+        #put a flash message saying enter a valid email
         redirect to '/users/signup'
       end
     end
@@ -59,6 +59,7 @@ class UserController < ApplicationController
       @user = User.find_by(params)
       session[:id] = @user.id
       redirect '/users/home'
+    end
   end
 
   get '/users/home' do
