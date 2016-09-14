@@ -7,21 +7,26 @@ class UserController < ApplicationController
   end
 
   post '/users/signup' do
-    submitted_email = params[:email]
-    # binding.pry
-    if submitted_email.match(VALID_EMAIL_REGEX) != nil
-      User.all.each do |user|
-        if user.email == submitted_email
-          redirect to '/users/login'
-          #flash message saying this email has an account
-        end
-      end
-      @user = User.find_or_create_by(params)
-      session[:id] = @user.id
-      redirect '/users/home'
-    else
-      #put a flash message
+    if params[:name] == "" || params[:email] == "" || params[:password_digest] == ""
+      #flash message enter something into the fields
       redirect to '/users/signup'
+    else
+      submitted_email = params[:email]
+      # binding.pry
+      if submitted_email.match(VALID_EMAIL_REGEX) != nil
+        User.all.each do |user|
+          if user.email == submitted_email
+            redirect to '/users/login'
+            #flash message saying this email has an account
+          end
+        end
+        @user = User.find_or_create_by(params)
+        session[:id] = @user.id
+        redirect '/users/home'
+      else
+        #put a flash message
+        redirect to '/users/signup'
+      end
     end
   end
 
@@ -47,9 +52,13 @@ class UserController < ApplicationController
   end
 
   post '/users/login' do
-    @user = User.find_by(params)
-    session[:id] = @user.id
-    redirect '/users/home'
+    if params[:email] == "" || params[:password_digest] == ""
+      #flash message enter something into the fields
+      redirect to '/users/signup'
+    else
+      @user = User.find_by(params)
+      session[:id] = @user.id
+      redirect '/users/home'
   end
 
   get '/users/home' do
