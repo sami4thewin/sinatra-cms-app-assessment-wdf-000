@@ -12,12 +12,17 @@ class PlaylistController < ApplicationController
         @playlist = Playlist.create(name: params[:playlist][:name])
         params[:playlist][:songs].each do |song|
           if song != ""
-            new_song = RSpotify::Track.search(song).first
-            spotify = new_song.external_urls["spotify"]
-            @song = Song.create(name: new_song.name, spotify: spotify)
-            @playlist.songs << @song
-            @user = User.find_by_id(session[:id])
-            @user.playlists << @playlist
+            # binding.pry
+            if RSpotify::Track.search(song).first != nil
+              new_song = RSpotify::Track.search(song).first
+              spotify = new_song.external_urls["spotify"]
+              @song = Song.create(name: new_song.name, spotify: spotify)
+              @playlist.songs << @song
+              @user = User.find_by_id(session[:id])
+              @user.playlists << @playlist
+            else
+              redirect to '/playlists/new'
+            end
           end
         end
       end
