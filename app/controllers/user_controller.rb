@@ -1,7 +1,7 @@
 class UserController < ApplicationController
 
   get '/users/signup' do
-    erb :signup
+    erb :'/users/signup'
   end
 
   post '/users' do
@@ -11,12 +11,12 @@ class UserController < ApplicationController
   end
 
   get '/users/login' do
-    erb :login
+    erb :'/users/login'
   end
 
   get '/users/home' do
     @user = User.find(session[:id])
-    erb :home
+    erb :'/users/home'
   end
 
 end
