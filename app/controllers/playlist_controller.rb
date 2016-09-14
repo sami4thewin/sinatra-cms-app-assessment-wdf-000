@@ -26,7 +26,8 @@ class PlaylistController < ApplicationController
 
     get '/playlists/:id' do
       @playlist = Playlist.find_by(id: params[:id])
-      binding.pry
+      erb :show
+      # binding.pry
     end
 
 
