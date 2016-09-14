@@ -5,7 +5,6 @@ class PlaylistController < ApplicationController
     end
 
     post '/playlists' do
-
       if params[:playlist][:name] == nil || params[:playlist][:name] == ""
         #put a flash message here
         redirect to '/playlists/new'
@@ -22,7 +21,13 @@ class PlaylistController < ApplicationController
           end
         end
       end
+      erb :'/users/home'
+    end
+
+    get '/playlists/:id' do
+      @playlist = Playlist.find_by(id: params[:id])
       binding.pry
     end
+
 
 end
