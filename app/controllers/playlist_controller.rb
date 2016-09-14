@@ -46,6 +46,10 @@ class PlaylistController < ApplicationController
       # end
     end
 
+    get '/playlist/:id/songadd' do
+
+    end
+
 
 
 end
