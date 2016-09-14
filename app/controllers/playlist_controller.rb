@@ -53,7 +53,23 @@ class PlaylistController < ApplicationController
     end
 
     post '/playlist/:id/add' do
-      binding.pry
+      @playlist = Playlist.find_by(id: params[:id])
+      params[:playlist][:songs].each do |song|
+        if song != ""
+          new_song = RSpotify::Track.search(song).first
+          spotify = new_song.external_urls["spotify"]
+          @song = Song.find_or_create_by(name: new_song.name, spotify: spotify)
+          @playlist.songs << @song
+        end
+      end
+      redirect to "/playlists/#{@playlist.id}"
+    end
+
+    get '/playlist/:id/delete' do
+      # binding.pry
+      @playlist = Playlist.find_by(id: params[:id])
+      @playlist.destroy
+      redirect to '/users/home'
     end
 
 
