@@ -1,8 +1,8 @@
-<h2>Welcome <%=@user.name%>!</h2>
+<h2><%=@playlist.name%>'s current songs:</h2>
 
-<h2>Here are your playlists:</h2>
-<%@user.playlists.each do |playlist|%>
-<br></br>
-<a href="/playlists/#{playlist.id}"><%=playlist.name%></a>
+<%@playlist.songs.each do |song|%>
+<%=song.name%>
+<br>
+<a href='/playlist/<%=@playlist.id%>/<%=song.id%>/songdelete'>Delete</a>
 <br></br>
 <%end%>

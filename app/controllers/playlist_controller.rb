@@ -35,5 +35,17 @@ class PlaylistController < ApplicationController
       erb :'/playlists/edit'
     end
 
+    get '/playlist/:id/:song_id/songdelete' do
+      # @song = Song.find_by(id: params[:id])
+      @playlist = Playlist.find_by(id: params[:id])
+      # @playlist.songs.each do |song|
+        # if song.name == @song.name
+      @playlist.songs.delete(Song.find_by(id: params[:song_id]))
+      # binding.pry
+      redirect to '/playlist/#{@playlist.id}/edit'
+      # end
+    end
+
+
 
 end
