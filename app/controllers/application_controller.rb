@@ -1,3 +1,5 @@
+# require 'rack-flash'
+
 class ApplicationController < Sinatra::Base
 
   register Sinatra::ActiveRecordExtension
@@ -10,10 +12,6 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  get '/sponatras/signup' do
-    erb :signup
-  end
-
   post '/sponatras' do
     @user = User.find_or_create_by(params)
     session[:id] = @user.id
@@ -22,6 +20,10 @@ class ApplicationController < Sinatra::Base
 
   get '/sponatras/login' do
     erb :login
+  end
+
+  get 'playlists/new' do
+    erb :new_playlist
   end
 
   get '/sponatras/home' do
