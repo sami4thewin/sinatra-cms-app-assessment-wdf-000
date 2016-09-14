@@ -19,4 +19,9 @@ class UserController < ApplicationController
     erb :'/users/home'
   end
 
+  get '/users/logout' do
+    session.clear
+    redirect to '/'
+  end
+
 end

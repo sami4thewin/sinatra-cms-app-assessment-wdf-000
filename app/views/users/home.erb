@@ -6,9 +6,11 @@
   <h3>Here are your playlists:</h3>
   <%@user.playlists.each do |playlist|%>
   <br></br>
-  <a href="/playlists/#{playlist.id}"><%=playlist.name%></a>
+  <a href="/playlists/<%=playlist.id%>"><%=playlist.name%></a>
   <br></br>
   <%end%>
 <%end%>
 <br></br>
 <a href="/playlists/new">Create a new playlist</a>
+<br>
+<a href="/users/logout">Click here to logout.</a>

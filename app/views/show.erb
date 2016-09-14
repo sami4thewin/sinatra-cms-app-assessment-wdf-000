@@ -1,1 +1,10 @@
-<%binding.pry%>
+
+<h1><%=@playlist.name%></h1>
+<br></br>
+<%@playlist.songs.each do |song|%>
+<h3><a href="<%=song.spotify%>" target="_blank"><%=song.name%></a></h3>
+<%end%>
+
+<a href="/users/home">Click here to return to your homepage.</a>
+<br></br>
+<a href="/users/logout">Click here to logout.</a>
