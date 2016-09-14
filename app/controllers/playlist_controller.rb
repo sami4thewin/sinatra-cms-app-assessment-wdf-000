@@ -1,7 +1,7 @@
 class PlaylistController < ApplicationController
 
     get '/playlists/new' do
-      erb :new_playlist
+      erb :'/playlists/new_playlist'
     end
 
     post '/playlists' do
@@ -26,7 +26,7 @@ class PlaylistController < ApplicationController
 
     get '/playlists/:id' do
       @playlist = Playlist.find_by(id: params[:id])
-      erb :show
+      erb :'/playlists/show'
       # binding.pry
     end
 
