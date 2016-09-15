@@ -4,7 +4,7 @@
 
 <%@playlist.songs.each do |song|%>
 <h3><a href="<%=song.spotify%>" target="_blank"><%=song.name%></a></h3>
-<a href="/playlists/<%=song.id%>/<%=@playlist.id%>/search">Search for songs like <%=song.name%></a>
+<a href="/playlists/<%=song.id%>/<%=@playlist.id%>/search">Search for playlists with songs like <%=song.name%></a>
 <%end%>
 <br></br>
 

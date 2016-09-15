@@ -68,8 +68,15 @@ class PlaylistController < ApplicationController
         if song != ""
           new_song = RSpotify::Track.search(song).first
           spotify = new_song.external_urls["spotify"]
-          @song = Song.find_or_create_by(name: new_song.name, spotify: spotify)
-          @playlist.songs << @song
+          @song = Song.create(name: new_song.name, spotify: spotify)
+          @playlist.songs.each do |check|
+            binding.pry
+            if check.name == @song.name
+              @song.destroy
+            else
+              @playlist.songs << @song
+            end
+          end
         end
       end
       redirect to "/playlists/#{@playlist.id}"
