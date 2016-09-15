@@ -106,10 +106,11 @@ class PlaylistController < ApplicationController
       @bruh.each do |song|
         # new
         found = Playlist.find_by(id: song.playlist_id)
-        if found != nil
+        if found != nil && !@array.include?(found)
           @array << found
         end
       end
+      # binding.pry
       erb :'/playlists/search'
     end
 
