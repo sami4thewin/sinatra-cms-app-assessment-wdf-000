@@ -78,7 +78,6 @@ class PlaylistController < ApplicationController
     get '/playlist/:id/delete' do
       # binding.pry
       @playlist = Playlist.find_by(id: params[:id])
-
       @playlist.destroy
       redirect to '/users/home'
     end
@@ -92,6 +91,10 @@ class PlaylistController < ApplicationController
       @array = []
       @bruh.each do |song|
         # new
+        found = Playlist.find_by(id: song.playlist_id)
+        if found != nil
+          @array << found
+        end
         binding.pry
       end
     end
