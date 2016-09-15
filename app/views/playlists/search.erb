@@ -3,9 +3,11 @@
 
 <form action="/found/<%=@playlist.id%>" method="post">
 
-  <label>Songs you can add:</label>
+  <label>Here are the playlists you requested:</label>
   <br></br>
     <%@array.each do |playlist|%>
+    <h3>Here are <%=playlist.name%>'s songs:</h3>
+    <br></br>
       <%playlist.songs.each do |song|%>
         <input type="checkbox" name="song[]" id="<%= song.name %>" value="<%=song.name%>"><%=song.name%></input>
         <br></br>
