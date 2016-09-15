@@ -62,8 +62,12 @@ class UserController < ApplicationController
       redirect to '/users/signup'
     else
       @user = User.find_by(params)
-      session[:id] = @user.id
-      redirect '/users/home'
+      if !@user.nil?
+        session[:id] = @user.id
+        redirect '/users/home'
+      else
+        redirect to '/users/login'
+      end
     end
   end
 

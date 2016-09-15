@@ -82,6 +82,15 @@ class PlaylistController < ApplicationController
       redirect to '/users/home'
     end
 
+    get '/playlists/:song_id/:id/search' do
+      @playlist = Playlist.find_by(id: params[:id])
+      @song = Song.find_by(id: params[:song_id]
+      Song.all.each do |song|
+        bruh = Song.all.where(name: @song.name).where.not(playlist_id: @playlist.id)
+      binding.pry
+      end
+    end
+
 
 
 end

@@ -4,9 +4,11 @@
 
 <%@playlist.songs.each do |song|%>
 <h3><a href="<%=song.spotify%>" target="_blank"><%=song.name%></a></h3>
+<a href="/playlists/<%=song.id%>/<%=@playlist.id%>/search">Search for songs like <%=song.name%></a>
 <%end%>
 <br></br>
 
+<br></br>
 <a href="/playlist/<%=@playlist.id%>/edit">Edit Playlist</a>
 <br></br>
 
