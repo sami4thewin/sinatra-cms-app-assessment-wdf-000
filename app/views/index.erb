@@ -1,4 +1,7 @@
 
+<%if session[:id] != nil%>
+<%redirect to '/users/home'%>
+<%else%>
 <h1>Welcome to Sponatra!</h1>
 <h3>Our spin on your favorite music...</h3>
 <br></br>
@@ -11,3 +14,4 @@
 
   <h4>Or create your new Sponatra account here!</h4>
   <a href="/users/signup">Sign Up</a>
+<%end%>
