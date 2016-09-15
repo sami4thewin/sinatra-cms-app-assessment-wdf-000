@@ -101,7 +101,18 @@ class PlaylistController < ApplicationController
 
     post '/found/:id' do
       @playlist = Playlist.find_by(id: params[:id])
-      binding.pry
+      @songs = params[:song]
+      @songs.each do |song|
+        # if RSpotify::Track.search(song).first != nil
+        new_song = RSpotify::Track.search(song).first
+        spotify = new_song.external_urls["spotify"]
+        # @song = Song.find_by(name: song)
+        @song = Song.create(name: new_song.name, spotify: spotify)
+        @playlist.songs << @song
+      end
+      #add a flash message congratulating on new songs
+      redirect to "/playlists/#{@playlist.id}"
+      # binding.pry
     end
 
 
