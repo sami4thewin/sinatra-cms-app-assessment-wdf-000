@@ -78,16 +78,21 @@ class PlaylistController < ApplicationController
     get '/playlist/:id/delete' do
       # binding.pry
       @playlist = Playlist.find_by(id: params[:id])
+
       @playlist.destroy
       redirect to '/users/home'
     end
 
     get '/playlists/:song_id/:id/search' do
       @playlist = Playlist.find_by(id: params[:id])
-      @song = Song.find_by(id: params[:song_id]
+      @song = Song.find_by(id: params[:song_id])
       Song.all.each do |song|
-        bruh = Song.all.where(name: @song.name).where.not(playlist_id: @playlist.id)
-      binding.pry
+        @bruh = Song.all.where(name: @song.name).where.not(playlist_id: @playlist.id)
+      end
+      @array = []
+      @bruh.each do |song|
+        # new
+        binding.pry
       end
     end
 
