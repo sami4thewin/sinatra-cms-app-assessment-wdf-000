@@ -99,6 +99,11 @@ class PlaylistController < ApplicationController
       erb :'/playlists/search'
     end
 
+    post '/found/:id' do
+      @playlist = Playlist.find_by(id: params[:id])
+      binding.pry
+    end
+
 
 
 end

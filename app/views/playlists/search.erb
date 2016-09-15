@@ -1,17 +1,17 @@
 <h2>Select which songs you would like to add to <%=@playlist.name%></h2>
 <br></br>
 
-<form action="/songs" method="post">
+<form action="/found/<%=@playlist.id%>" method="post">
 
-  <label>Songs:</label>
+  <label>Songs you can add:</label>
     <%@array.each do |playlist|%>
       <%playlist.songs.each do |song|%>
-        <input type="checkbox" name="song[]" id="<%= song.name %>" value="<%=song.id%>"><%=song.name%></input>
+        <input type="checkbox" name="song[]" id="<%= song.name %>" value="<%=song.name%>"><%=song.name%></input>
         <br></br>
       <%end%>
     <%end%>
 
   <br></br>
-  <input type="submit" value="Create">
+  <input type="submit" value="Add some songs for me Sponatra!">
 
 </form>
