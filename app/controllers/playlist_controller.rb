@@ -95,8 +95,8 @@ class PlaylistController < ApplicationController
         if found != nil
           @array << found
         end
-        binding.pry
       end
+      erb :'/playlists/search'
     end
 
 
