@@ -1,3 +1,9 @@
+<% if flash.has?(:message) %>
+
+  <h2><%=flash[:message]%></h2>
+
+<% end %>
+
 <h2>Welcome <%=@user.name%>!</h2>
 
 <% if @user.playlists.empty? %>

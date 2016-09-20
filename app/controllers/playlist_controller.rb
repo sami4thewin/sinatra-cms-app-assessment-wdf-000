@@ -7,7 +7,8 @@ class PlaylistController < ApplicationController
     post '/playlists' do
       if params[:playlist][:name] == nil || params[:playlist][:name] == ""
         #put a flash message here
-        redirect to '/playlists/new'
+        flash[:message] = "Please fill out the name field."
+        erb :'/playlists/new_playlist'
       else
         @playlist = Playlist.create(name: params[:playlist][:name])
         params[:playlist][:songs].each do |song|
@@ -22,7 +23,8 @@ class PlaylistController < ApplicationController
               @user.playlists << @playlist
             else
               #flash message that not a valid song
-              redirect to '/playlists/new'
+              flash[:message] = "Please enter a valid song."
+              erb :'/playlists/new_playlist'
             end
           end
         end
