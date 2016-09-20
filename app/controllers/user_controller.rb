@@ -81,4 +81,26 @@ class UserController < ApplicationController
     redirect to '/'
   end
 
+  get '/users/:id/edit' do
+    @user = User.find(session[:id])
+    erb :'/users/edit'
+  end
+
+  post '/users/:id/edit' do
+    @user = User.find(session[:id])
+    @user.email = params[:email]
+    @user.name = params[:name]
+    @user.password_digest = params[:password_digest]
+    @user.save
+    redirect to '/users/home'
+    # binding.pry
+  end
+
+  get '/users/delete' do
+    @user = User.find(session[:id])
+    session.clear
+    @user.destroy
+    redirect to '/'
+  end
+
 end
