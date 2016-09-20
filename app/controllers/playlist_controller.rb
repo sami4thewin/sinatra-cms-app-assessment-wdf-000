@@ -5,6 +5,7 @@ class PlaylistController < ApplicationController
     end
 
     post '/playlists' do
+      @user = User.find(session[:id])
       if params[:playlist][:name] == nil || params[:playlist][:name] == ""
         #put a flash message here
         flash[:message] = "Please fill out the name field."
@@ -89,9 +90,11 @@ class PlaylistController < ApplicationController
 
     get '/playlist/:id/delete' do
       # binding.pry
+      @user = User.find(session[:id])
       @playlist = Playlist.find_by(id: params[:id])
       @playlist.destroy
-      redirect to '/users/home'
+      flash[:message] = "We hope you don't miss your playlist too much."
+      erb :'/users/home'
     end
 
     get '/playlists/:song_id/:id/search' do
@@ -133,7 +136,8 @@ class PlaylistController < ApplicationController
         # @playlist.songs << @song
       end
       #add a flash message congratulating on new songs
-      redirect to "/playlists/#{@playlist.id}"
+      flash[:message] = "Congrats on your new songs!"
+      erb :'/playlists/show'
       # binding.pry
     end
 

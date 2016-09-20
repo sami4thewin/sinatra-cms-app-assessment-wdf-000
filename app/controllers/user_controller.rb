@@ -12,24 +12,33 @@ class UserController < ApplicationController
   end
 
   post '/users/signup' do
+    # binding.pry
     if params[:name] == "" || params[:email] == "" || params[:password_digest] == ""
       #flash message enter something into the fields
       flash[:message] = "You are missing a field."
       erb :'/users/signup'
     else
+      User.all.each do |user|
+        if user.name == params[:name]
+          flash[:message] = "This name is already associated with an account."
+          redirect to '/users/signup'
+          #flash message saying this email has an account
+        end
+      end
       submitted_email = params[:email]
       # binding.pry
       if submitted_email.match(VALID_EMAIL_REGEX) != nil
         User.all.each do |user|
           if user.email == submitted_email
             flash[:message] = "This email is already associated with an account."
-            erb :'/users/login'
+            redirect to '/users/login'
             #flash message saying this email has an account
           end
         end
         @user = User.create(params)
         session[:id] = @user.id
-        redirect '/users/home'
+        flash[:message] = "Congrats on your new account."
+        erb :'/users/home'
       else
         flash[:message] = "Please enter a valid email."
         #put a flash message saying enter a valid email
