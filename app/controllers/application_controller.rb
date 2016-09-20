@@ -1,6 +1,8 @@
-# require 'rack-flash'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
+
+  use Rack::Flash
 
   register Sinatra::ActiveRecordExtension
 

@@ -1,8 +1,4 @@
-require 'rack-flash'
-
 class PlaylistController < ApplicationController
-
-  use Rack::Flash
 
     get '/playlists/new' do
       erb :'/playlists/new_playlist'
