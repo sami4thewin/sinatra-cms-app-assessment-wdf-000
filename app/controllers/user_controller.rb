@@ -59,14 +59,15 @@ class UserController < ApplicationController
   post '/users/login' do
     if params[:email] == "" || params[:password_digest] == ""
       #flash message enter something into the fields
-      redirect to '/users/signup'
+      redirect to '/users/login'
     else
       @user = User.find_by(params)
       if !@user.nil?
         session[:id] = @user.id
         redirect '/users/home'
       else
-        redirect to '/users/login'
+        #flash message to create an account
+        redirect to '/users/signup'
       end
     end
   end
