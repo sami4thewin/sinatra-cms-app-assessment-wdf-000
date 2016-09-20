@@ -6,7 +6,6 @@ if defined?(ActiveRecord::Migrator) && ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
-run ApplicationController
 use PlaylistController
-use SongController
-use UserController 
+use UserController
+run ApplicationController

@@ -1,8 +1,4 @@
-require 'rack-flash'
-
 class PlaylistController < ApplicationController
-
-  use Rack::Flash
 
     get '/playlists/new' do
       erb :'/playlists/new_playlist'
@@ -10,7 +6,7 @@ class PlaylistController < ApplicationController
 
     post '/playlists' do
       if params[:playlist][:name] == nil || params[:playlist][:name] == ""
-        #put a flash message here
+        flash[:message] = "Please input a playlist name"
         redirect to '/playlists/new'
       else
         @playlist = Playlist.create(name: params[:playlist][:name])
