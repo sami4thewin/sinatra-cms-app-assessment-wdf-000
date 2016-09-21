@@ -1,24 +1,24 @@
 <h2>Select which songs you would like to add to <%=@playlist.name%></h2>
 <br></br>
 
+<%if @array.empty?%>
+<h3>Sorry, we didn't find any similar songs</h3>
+<br>
+<a href="/playlists/<%=@playlist.id%>">Click here to return to <%=@playlist.name%></a>
+<%else%>
+
 <form action="/found/<%=@playlist.id%>" method="post">
 
-  <label>Here are the playlists you requested:</label>
+  <label>Here are the songs you requested:</label>
   <br></br>
-    <%@array.each do |playlist|%>
-      <%if playlist.songs.length != 1%>
-      <h3>Here are <%=playlist.name%>'s songs:</h3>
+    <%@array.each do |song|%>
+    <input type="checkbox" name="song[]" id="<%= song.name %>" value="<%=song.name%>"><%=song.name%></input>
       <br></br>
-        <%playlist.songs.each do |song|%>
-          <%if song.name != @song.name%>
-            <input type="checkbox" name="song[]" id="<%= song.name %>" value="<%=song.name%>"><%=song.name%></input>
-            <br></br>
-          <%end%>
-        <%end%>
-      <%end%>
     <%end%>
 
   <br></br>
   <input type="submit" value="Add some songs for me Sponatra!">
 
 </form>
+
+<%end%>
